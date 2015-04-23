@@ -2,10 +2,12 @@ package GolfMerchUI;
 
 import java.sql.*;
 import java.util.ArrayList;
-/**
- *
- * @author Costasv
- */
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+//@author Costasv
 public class DBManager {
     private Connection conn;
     public DBManager(){
@@ -175,7 +177,7 @@ public class DBManager {
         return results;
     }
     
-        public ArrayList<Object[]> getInvoicesByCustID(String customerID) throws SQLException{
+    public ArrayList<Object[]> getInvoicesByCustID(String customerID) throws SQLException{
         ArrayList<Object[]> results = new ArrayList<>();
         PreparedStatement pstmt = null;
         String query = "";
@@ -206,6 +208,41 @@ public class DBManager {
         }
         return results;
     } 
+    
+    public ArrayList<Object[]> getCustomerInfo(String startDate, String endDate) throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        Statement stmt = null;
+        String query = "";
+        ResultSet rs = null;
+        
+        try {
+            if(startDate.equals("") && endDate.equals(""))
+            {
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                Date todayDate = new Date();
+                endDate = dateFormat.format(todayDate);
+                
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, -1);        
+                startDate = dateFormat.format(cal.getTime());
+                
+            }
+            query = "select c.customerid, c.customername, sum(coi.totalPrice) as \"Total Spent\" from customer c inner join custorderinfo coi on c.customerid = coi.customerid where coi.createddate between '"+ startDate +"' and '"+ endDate +"' group by c.customerID;";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);       
+	    
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("customerid"), rs.getString("customername"), rs.getString("Total Spent")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } 
+        finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        return results;
+    }
     
     public Object[] login(String username, String password) throws SQLException {
     
