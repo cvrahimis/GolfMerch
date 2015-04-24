@@ -224,8 +224,7 @@ public class DBManager {
                 
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, -1);        
-                startDate = dateFormat.format(cal.getTime());
-                
+                startDate = dateFormat.format(cal.getTime()); 
             }
             query = "select c.customerid, c.customername, sum(coi.totalPrice) as \"Total Spent\" from customer c inner join custorderinfo coi on c.customerid = coi.customerid where coi.createddate between '"+ startDate +"' and '"+ endDate +"' group by c.customerID;";
             stmt = conn.createStatement();
@@ -233,6 +232,76 @@ public class DBManager {
 	    
             while (rs.next()) {
                 results.add(new Object[]{rs.getString("customerid"), rs.getString("customername"), rs.getString("Total Spent")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } 
+        finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        return results;
+    }
+    
+    public ArrayList<Object[]> getItemReport(String itemID) throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        PreparedStatement pstmt = null;
+        String query = "";
+        ResultSet rs = null;
+        
+        try {
+            query = "select c.customerid, c.customername, oii.itemID, sum(oii.quantity) as totalPurchased \n" +
+                    "from custorderinfo coi\n" +
+                    "	inner join orderitemsinfo oii on\n" +
+                    "		coi.orderid = oii.orderid\n" +
+                    "	inner join customer c on\n" +
+                    "		coi.customerid = c.customerid\n" +
+                    "where oii.itemID = ? \n" +
+                    "group by c.customerid, oii.itemid;";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, itemID);
+            
+	    rs = pstmt.executeQuery();
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("customerid"), rs.getString("customername"), rs.getString("itemID"), rs.getInt("totalPurchased")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null) { pstmt.close(); }
+        }
+        return results;
+    }
+    
+    public ArrayList<Object[]> getSlowMovInv(String startDate, String endDate) throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        Statement stmt = null;
+        String query = "";
+        ResultSet rs = null;
+        
+        try {
+            if(startDate.equals("") && endDate.equals(""))
+            {
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                Date todayDate = new Date();
+                endDate = dateFormat.format(todayDate);
+                
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, -1);        
+                startDate = dateFormat.format(cal.getTime()); 
+            }
+            query = "SELECT *\n" +
+                    "FROM Products\n" +
+                    "WHERE itemID NOT IN (\n" +
+                    "	SELECT itemID \n" +
+                    "	FROM OrderItemsInfo ii, CustOrderInfo oi\n" +
+                    "	WHERE oi.orderID = ii.orderID AND oi.createdDate between '" + startDate + "' AND '"+ endDate +"');";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);       
+	    
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("itemid"), rs.getString("itemname"), rs.getString("description"), rs.getString("quantity"), rs.getString("category"), rs.getString("retailprice"), rs.getString("wholesaleprice")});
             }
         } 
         catch (SQLException e ) {
