@@ -34,7 +34,7 @@ public class DBManager {
 		
 	    String url = "jdbc:postgresql://localhost/GolfMerch";
 	    String user = "postgres";
-	    String password = "omb93";
+	    String password = "finny";
 
 	    try {
 	        con = DriverManager.getConnection(url, user, password);

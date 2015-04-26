@@ -29,6 +29,7 @@ public class RegularUser extends javax.swing.JFrame {
         model = (DefaultTableModel)jTable1.getModel();
         try{
             categoryComBox.setModel(new DefaultComboBoxModel(db.getDistCategories()));
+            categoryComBox.setSelectedIndex(0);
         }
         catch(SQLException e ){
         }

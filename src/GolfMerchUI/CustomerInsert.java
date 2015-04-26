@@ -81,6 +81,8 @@ public class CustomerInsert extends javax.swing.JFrame {
 
         creditLimitLbl.setText("Credit Limit");
 
+        creditLimitTxtFld.setText("1000.00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
