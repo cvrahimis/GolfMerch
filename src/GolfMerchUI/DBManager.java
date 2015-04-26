@@ -369,6 +369,108 @@ public class DBManager {
         return results;
     }
     
+    public ArrayList<Object[]> getCustNtPaid(String startDate, String endDate) throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        Statement stmt = null;
+        String query = "";
+        ResultSet rs = null;
+        
+        try {
+            if(startDate.equals("") && endDate.equals(""))
+            {
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                Date todayDate = new Date();
+                endDate = dateFormat.format(todayDate);
+                
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, -1);        
+                startDate = dateFormat.format(cal.getTime()); 
+            }
+            query = "SELECT c.customerID, customerName, orderID, totalPrice, orderBalance, oi.createdDate Order_Date\n" +
+                    "FROM Customer c, CustOrderInfo oi\n" +
+                    "WHERE c.customerID = oi.customerID AND oi.createdDate between '" + startDate + "' AND '" + endDate + "'; ";
+                    
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);       
+	    
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("customerID"), rs.getString("customerName"), rs.getString("orderID"), rs.getDouble("totalPrice"), rs.getDouble("orderBalance"), rs.getDate("Order_Date")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } 
+        finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        return results;
+    }
+    
+    public ArrayList<Object[]> getCustNtBuy(String startDate, String endDate) throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        Statement stmt = null;
+        String query = "";
+        ResultSet rs = null;
+        
+        try {
+            if(startDate.equals("") && endDate.equals(""))
+            {
+                DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                Date todayDate = new Date();
+                endDate = dateFormat.format(todayDate);
+                
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, -1);        
+                startDate = dateFormat.format(cal.getTime()); 
+            }
+            query = "SELECT *\n" +
+                    "FROM Customer\n" +
+                    "WHERE customerID NOT IN (SELECT customerID FROM CustOrderInfo WHERE createdDate between '" + startDate + "' AND '" + endDate + "');";
+                    
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);       
+	    
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("customerID"), rs.getString("customerName"), rs.getDate("createddate"), rs.getString("phone"), rs.getString("email")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } 
+        finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        return results;
+    }
+    
+    public ArrayList<Object[]> getZeroQtyPOs() throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        Statement stmt = null;
+        String query = "";
+        ResultSet rs = null;
+        
+        try {
+            
+            query = "SELECT pr.itemID, pr.itemName, po.quantity, po.createdDate Purchase_Order_Date\n" +
+                    "FROM Products pr, PurchaseOrder po\n" +
+                    "WHERE pr.itemID = po.itemID AND pr.quantity = 0 AND isFulfilled = 0;";
+                    
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);       
+	    
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("itemID"), rs.getString("itemName"), rs.getString("quantity"), rs.getDouble("createdDate"), rs.getDouble("Purchase_Order_Date")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } 
+        finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        return results;
+    }
+   
     public Object[] login(String username, String password) throws SQLException {
     
         PreparedStatement pstmt = null;

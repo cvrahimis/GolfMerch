@@ -54,6 +54,7 @@ public class RegularUser extends javax.swing.JFrame {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPopupMenu2 = new javax.swing.JPopupMenu();
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         shwBakOrdBtn = new javax.swing.JButton();
@@ -88,6 +89,15 @@ public class RegularUser extends javax.swing.JFrame {
         categoryComBox = new javax.swing.JComboBox();
         inventoryByCatBtn = new javax.swing.JButton();
         jSeparator8 = new javax.swing.JSeparator();
+        custNtPaidStartDtPik = new com.toedter.calendar.JDateChooser();
+        custNtPaidEndDtPik = new com.toedter.calendar.JDateChooser();
+        custNtPaidBtn = new javax.swing.JButton();
+        jSeparator9 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
+        zeroQtyPOsBtn = new javax.swing.JButton();
+        custNotBuyStartDtPik = new com.toedter.calendar.JDateChooser();
+        custNotBuyEndDtPik = new com.toedter.calendar.JDateChooser();
+        custNotBuyBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -202,6 +212,37 @@ public class RegularUser extends javax.swing.JFrame {
 
         jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        custNtPaidStartDtPik.setDateFormatString("MM/dd/yyyy");
+
+        custNtPaidEndDtPik.setDateFormatString("MM/dd/yyyy");
+
+        custNtPaidBtn.setText("Customers Not Paid");
+        custNtPaidBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custNtPaidBtnActionPerformed(evt);
+            }
+        });
+
+        jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        zeroQtyPOsBtn.setText("POs With Items 0 Qty");
+        zeroQtyPOsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zeroQtyPOsBtnActionPerformed(evt);
+            }
+        });
+
+        custNotBuyStartDtPik.setDateFormatString("MM/dd/yyyy");
+
+        custNotBuyEndDtPik.setDateFormatString("MM/dd/yyyy");
+
+        custNotBuyBtn.setText("<html>Customers Not Purchasing<br><center>In Time Frame</center></html>");
+        custNotBuyBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custNotBuyBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -243,9 +284,9 @@ public class RegularUser extends javax.swing.JFrame {
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(itemReportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(itemReportTxtFld))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                            .addComponent(itemReportTxtFld)
+                            .addComponent(itemReportBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -260,10 +301,24 @@ public class RegularUser extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(categoryComBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inventoryByCatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(inventoryByCatBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator10, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(zeroQtyPOsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 173, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(custNtPaidEndDtPik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(custNtPaidStartDtPik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(custNtPaidBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(custNotBuyBtn)
+                            .addComponent(custNotBuyStartDtPik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(custNotBuyEndDtPik, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 12, Short.MAX_VALUE)))
                 .addContainerGap())
             .addComponent(greetingLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -309,41 +364,56 @@ public class RegularUser extends javax.swing.JFrame {
                                             .addComponent(getInvByCustIdBtn))
                                         .addGap(45, 45, 45)))
                                 .addGap(30, 30, 30))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(itemReportBtn)
-                                        .addGap(20, 20, 20)
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(itemReportTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(slowMovInventBtn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(slowMovStartDtPik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(slowMovEndDtPik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addComponent(slowMovInventBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(slowMovStartDtPik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(slowMovEndDtPik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(itemReportBtn)
+                                    .addGap(20, 20, 20)
+                                    .addComponent(jLabel6)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(itemReportTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(custNotBuyBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(custNotBuyStartDtPik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(custNotBuyEndDtPik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(custNtPaidBtn)
+                                .addGap(25, 25, 25)
+                                .addComponent(custNtPaidStartDtPik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addComponent(custNtPaidEndDtPik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(inventoryByCatBtn)
-                                .addGap(28, 28, 28)
-                                .addComponent(categoryComBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(categoryComBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(zeroQtyPOsBtn))
+                            .addComponent(jSeparator8, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 416, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -352,15 +422,17 @@ public class RegularUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void shwBakOrdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shwBakOrdBtnActionPerformed
-        String[] columns = new String[]{"Order ID", "Customer ID", "Created Date", "Item ID", "Quantity"};
-        
+    public void clarTable(){
         int tableSize = model.getRowCount(); 
         for(int i = 0; i < tableSize; i++)
         {
             model.removeRow(0);
         }
-        
+    }    
+    
+    private void shwBakOrdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shwBakOrdBtnActionPerformed
+        String[] columns = new String[]{"Order ID", "Customer ID", "Created Date", "Item ID", "Quantity"};
+        clarTable();        
         try{
             results = db.getAllBackOrders(bakOrdItemIdTxtFld.getText());
             model = (DefaultTableModel)jTable1.getModel();
@@ -377,13 +449,7 @@ public class RegularUser extends javax.swing.JFrame {
 
     private void wholeSaleCustItmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wholeSaleCustItmBtnActionPerformed
         String[] columns = new String[]{"Customer ID", "Customer Name", "Item Id", "Item Name", "Quantity", "Category", "Retail Price", "Wholesale Price"};
-        
-        int tableSize = model.getRowCount(); 
-        for(int i = 0; i < tableSize; i++)
-        {
-            model.removeRow(0);
-        }
-        
+        clarTable();
         try{
             results = db.getWholeSaleItemsByCustomerID(wholeSaleCustItmTxtFld.getText());
             model = (DefaultTableModel)jTable1.getModel();
@@ -400,12 +466,7 @@ public class RegularUser extends javax.swing.JFrame {
 
     private void getInvByCustIdBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_getInvByCustIdBtnActionPerformed
         String[] columns = new String[]{"Customer Name", "Order ID", "Amount Paid", "Invoiced Date", "Shipping Address", "Tracking Number", "Total Price", "Order Balance"};
-        
-        int tableSize = model.getRowCount(); 
-        for(int i = 0; i < tableSize; i++)
-        {
-            model.removeRow(0);
-        }
+        clarTable();
         
         try{
             results = db.getInvoicesByCustID(getInvByCustIDTxtFld.getText());
@@ -422,16 +483,10 @@ public class RegularUser extends javax.swing.JFrame {
     }//GEN-LAST:event_getInvByCustIdBtnActionPerformed
 
     private void custReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custReportBtnActionPerformed
-        String[] columns = new String[]{"Customer ID", "Customer Name", "Life Time Spent"};
-                
+        String[] columns = new String[]{"Customer ID", "Customer Name", "Life Time Spent"};     
         String startDate = ((JTextField)startDtPik.getDateEditor().getUiComponent()).getText();
         String endDate = ((JTextField)endDtPik.getDateEditor().getUiComponent()).getText();
-                
-        int tableSize = model.getRowCount(); 
-        for(int i = 0; i < tableSize; i++)
-        {
-            model.removeRow(0);
-        }
+        clarTable();
         
         try{
             results = db.getCustomerInfo(startDate, endDate);
@@ -451,12 +506,7 @@ public class RegularUser extends javax.swing.JFrame {
         if(!itemReportTxtFld.getText().equals(""))
         {
             String[] columns = new String[]{"Customer ID", "Customer Name", "Item ID", "Total Purchased"};
-        
-            int tableSize = model.getRowCount(); 
-            for(int i = 0; i < tableSize; i++)
-            {
-                model.removeRow(0);
-            }
+            clarTable();
 
             try{
                 results = db.getItemReport(itemReportTxtFld.getText());
@@ -475,16 +525,10 @@ public class RegularUser extends javax.swing.JFrame {
 
     private void slowMovInventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slowMovInventBtnActionPerformed
         
-        String[] columns = new String[]{"Item ID", "Item Name", "Description", "Quantity", "Category", "Retail Price", "Wholesale Price"};
-                
+        String[] columns = new String[]{"Item ID", "Item Name", "Description", "Quantity", "Category", "Retail Price", "Wholesale Price"}; 
         String startDate = ((JTextField)slowMovStartDtPik.getDateEditor().getUiComponent()).getText();
         String endDate = ((JTextField)slowMovEndDtPik.getDateEditor().getUiComponent()).getText();
-                
-        int tableSize = model.getRowCount(); 
-        for(int i = 0; i < tableSize; i++)
-        {
-            model.removeRow(0);
-        }
+        clarTable();
         
         try{
             results = db.getSlowMovInv(startDate, endDate);
@@ -504,12 +548,7 @@ public class RegularUser extends javax.swing.JFrame {
         String[] columns = new String[]{"Category", "Inventory Count"};
                 
         String selectItm = (String)categoryComBox.getSelectedItem();
-                
-        int tableSize = model.getRowCount(); 
-        for(int i = 0; i < tableSize; i++)
-        {
-            model.removeRow(0);
-        }
+        clarTable();
         
         try{
             results = db.getInventoryByCategory(selectItm);
@@ -524,6 +563,66 @@ public class RegularUser extends javax.swing.JFrame {
         catch(SQLException e ){
         }
     }//GEN-LAST:event_inventoryByCatBtnActionPerformed
+
+    private void custNtPaidBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custNtPaidBtnActionPerformed
+        String[] columns = new String[]{"Customer ID", "Customer Name", "Order ID", "Total Price", "Order Balance", "Order Date"};
+                
+        String startDate = ((JTextField)custNtPaidStartDtPik.getDateEditor().getUiComponent()).getText();
+        String endDate = ((JTextField)custNtPaidEndDtPik.getDateEditor().getUiComponent()).getText();
+        clarTable();
+        
+        try{
+            results = db.getCustNtPaid(startDate, endDate);
+            model = (DefaultTableModel)jTable1.getModel();
+            model.setColumnCount(columns.length);
+            model.setColumnIdentifiers(columns);
+            for(int i = 0; i < results.size(); i++)
+            {
+                model.insertRow(model.getRowCount(), results.get(i));
+            }
+        }
+        catch(SQLException e ){
+        }
+    }//GEN-LAST:event_custNtPaidBtnActionPerformed
+
+    private void zeroQtyPOsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zeroQtyPOsBtnActionPerformed
+        String[] columns = new String[]{"Item ID", "Itemname", "Quantity", "Purchase Order Date"};
+        clarTable();
+        
+        try{
+            results = db.getZeroQtyPOs();
+            model = (DefaultTableModel)jTable1.getModel();
+            model.setColumnCount(columns.length);
+            model.setColumnIdentifiers(columns);
+            for(int i = 0; i < results.size(); i++)
+            {
+                model.insertRow(model.getRowCount(), results.get(i));
+            }
+        }
+        catch(SQLException e ){
+        }
+    }//GEN-LAST:event_zeroQtyPOsBtnActionPerformed
+
+    private void custNotBuyBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custNotBuyBtnActionPerformed
+        String[] columns = new String[]{"Customer ID", "Customer Name", "Created Date", "Phone", "Email"};
+                
+        String startDate = ((JTextField)custNotBuyStartDtPik.getDateEditor().getUiComponent()).getText();
+        String endDate = ((JTextField)custNotBuyEndDtPik.getDateEditor().getUiComponent()).getText();
+        clarTable();
+        
+        try{
+            results = db.getCustNtBuy(startDate, endDate);
+            model = (DefaultTableModel)jTable1.getModel();
+            model.setColumnCount(columns.length);
+            model.setColumnIdentifiers(columns);
+            for(int i = 0; i < results.size(); i++)
+            {
+                model.insertRow(model.getRowCount(), results.get(i));
+            }
+        }
+        catch(SQLException e ){
+        }
+    }//GEN-LAST:event_custNotBuyBtnActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -560,6 +659,12 @@ public class RegularUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField bakOrdItemIdTxtFld;
     private javax.swing.JComboBox categoryComBox;
+    private javax.swing.JButton custNotBuyBtn;
+    private com.toedter.calendar.JDateChooser custNotBuyEndDtPik;
+    private com.toedter.calendar.JDateChooser custNotBuyStartDtPik;
+    private javax.swing.JButton custNtPaidBtn;
+    private com.toedter.calendar.JDateChooser custNtPaidEndDtPik;
+    private com.toedter.calendar.JDateChooser custNtPaidStartDtPik;
     private javax.swing.JButton custReportBtn;
     private com.toedter.calendar.JDateChooser endDtPik;
     private javax.swing.JTextField getInvByCustIDTxtFld;
@@ -579,6 +684,8 @@ public class RegularUser extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
@@ -586,6 +693,7 @@ public class RegularUser extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton shwBakOrdBtn;
     private com.toedter.calendar.JDateChooser slowMovEndDtPik;
@@ -594,5 +702,6 @@ public class RegularUser extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser startDtPik;
     private javax.swing.JButton wholeSaleCustItmBtn;
     private javax.swing.JTextField wholeSaleCustItmTxtFld;
+    private javax.swing.JButton zeroQtyPOsBtn;
     // End of variables declaration//GEN-END:variables
 }
