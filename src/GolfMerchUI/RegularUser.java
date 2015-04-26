@@ -265,6 +265,11 @@ public class RegularUser extends javax.swing.JFrame {
         jMenu3.add(PurchOrdMenItm);
 
         customeMenItm.setText("Customer");
+        customeMenItm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customeMenItmActionPerformed(evt);
+            }
+        });
         jMenu3.add(customeMenItm);
 
         orderMenItm.setText("Order");
@@ -660,6 +665,12 @@ public class RegularUser extends javax.swing.JFrame {
         catch(SQLException e ){
         }
     }//GEN-LAST:event_custNotBuyBtnActionPerformed
+
+    private void customeMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customeMenItmActionPerformed
+        // TODO add your handling code here:
+        CustomerInsert cusInsGUI = new CustomerInsert();
+        cusInsGUI.setVisible(true);
+    }//GEN-LAST:event_customeMenItmActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

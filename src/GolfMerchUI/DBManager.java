@@ -6,6 +6,8 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //@author Costasv
 public class DBManager {
@@ -32,7 +34,7 @@ public class DBManager {
 		
 	    String url = "jdbc:postgresql://localhost/GolfMerch";
 	    String user = "postgres";
-	    String password = "finny";
+	    String password = "omb93";
 
 	    try {
 	        con = DriverManager.getConnection(url, user, password);
@@ -469,6 +471,40 @@ public class DBManager {
             if (stmt != null) { stmt.close(); }
         }
         return results;
+    }
+    
+    public boolean insertNewCustomer(String customerID, String customerName, String phoneNumber, String emailAddress, double creditLimit)
+    {
+        PreparedStatement pstmt;        
+        boolean success = true;
+        try {
+            String sql = "INSERT INTO Customer (customerid,customername,createddate,phone,email) VALUES (?,?,?,?,?)";
+            DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+            Date today = new Date();          
+            pstmt = conn.prepareStatement(sql);        
+            pstmt.setString(1,customerID);
+            pstmt.setString(2,customerName);
+            pstmt.setTimestamp(3,new java.sql.Timestamp(System.currentTimeMillis()));
+            pstmt.setString(4,phoneNumber);
+            pstmt.setString(5,emailAddress);
+            pstmt.executeUpdate();
+            if(creditLimit != 0)
+            {
+                sql = "INSERT INTO CreditLimits (customerid,creditlimit,currentbalance) VALUES (?,?,?)";
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1,customerID);
+                pstmt.setDouble(2,creditLimit);
+                pstmt.setDouble(3,0.00);
+                pstmt.executeUpdate();                               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+            success = false;
+        }
+        finally
+        {
+            return success;
+        }
     }
    
     public Object[] login(String username, String password) throws SQLException {
