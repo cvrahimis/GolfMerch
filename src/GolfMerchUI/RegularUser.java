@@ -98,6 +98,15 @@ public class RegularUser extends javax.swing.JFrame {
         custNotBuyStartDtPik = new com.toedter.calendar.JDateChooser();
         custNotBuyEndDtPik = new com.toedter.calendar.JDateChooser();
         custNotBuyBtn = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        PurchOrdMenItm = new javax.swing.JMenuItem();
+        customeMenItm = new javax.swing.JMenuItem();
+        orderMenItm = new javax.swing.JMenuItem();
+        itemMenItm = new javax.swing.JMenuItem();
+        invoiceMenItm = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -243,6 +252,34 @@ public class RegularUser extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Insert");
+
+        PurchOrdMenItm.setText("Item");
+        PurchOrdMenItm.setToolTipText("");
+        jMenu3.add(PurchOrdMenItm);
+
+        customeMenItm.setText("Customer");
+        jMenu3.add(customeMenItm);
+
+        orderMenItm.setText("Order");
+        jMenu3.add(orderMenItm);
+
+        itemMenItm.setText("Purchase Order");
+        jMenu3.add(itemMenItm);
+
+        invoiceMenItm.setText("Invoice");
+        jMenu3.add(invoiceMenItm);
+
+        jMenuBar1.add(jMenu3);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -327,7 +364,7 @@ public class RegularUser extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(greetingLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -657,6 +694,7 @@ public class RegularUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem PurchOrdMenItm;
     private javax.swing.JTextField bakOrdItemIdTxtFld;
     private javax.swing.JComboBox categoryComBox;
     private javax.swing.JButton custNotBuyBtn;
@@ -666,11 +704,14 @@ public class RegularUser extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser custNtPaidEndDtPik;
     private com.toedter.calendar.JDateChooser custNtPaidStartDtPik;
     private javax.swing.JButton custReportBtn;
+    private javax.swing.JMenuItem customeMenItm;
     private com.toedter.calendar.JDateChooser endDtPik;
     private javax.swing.JTextField getInvByCustIDTxtFld;
     private javax.swing.JButton getInvByCustIdBtn;
     private javax.swing.JLabel greetingLbl;
     private javax.swing.JButton inventoryByCatBtn;
+    private javax.swing.JMenuItem invoiceMenItm;
+    private javax.swing.JMenuItem itemMenItm;
     private javax.swing.JButton itemReportBtn;
     private javax.swing.JTextField itemReportTxtFld;
     private javax.swing.JLabel jLabel1;
@@ -681,6 +722,10 @@ public class RegularUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -695,6 +740,7 @@ public class RegularUser extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTable jTable1;
+    private javax.swing.JMenuItem orderMenItm;
     private javax.swing.JButton shwBakOrdBtn;
     private com.toedter.calendar.JDateChooser slowMovEndDtPik;
     private javax.swing.JButton slowMovInventBtn;
