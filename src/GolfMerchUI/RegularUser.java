@@ -262,6 +262,11 @@ public class RegularUser extends javax.swing.JFrame {
 
         PurchOrdMenItm.setText("Item");
         PurchOrdMenItm.setToolTipText("");
+        PurchOrdMenItm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PurchOrdMenItmActionPerformed(evt);
+            }
+        });
         jMenu3.add(PurchOrdMenItm);
 
         customeMenItm.setText("Customer");
@@ -660,6 +665,10 @@ public class RegularUser extends javax.swing.JFrame {
         catch(SQLException e ){
         }
     }//GEN-LAST:event_custNotBuyBtnActionPerformed
+
+    private void PurchOrdMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PurchOrdMenItmActionPerformed
+        
+    }//GEN-LAST:event_PurchOrdMenItmActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
