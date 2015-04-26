@@ -667,7 +667,8 @@ public class RegularUser extends javax.swing.JFrame {
     }//GEN-LAST:event_custNotBuyBtnActionPerformed
 
     private void PurchOrdMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PurchOrdMenItmActionPerformed
-        
+        ItemInsert itemInsert = new ItemInsert();
+        itemInsert.setVisible(true);
     }//GEN-LAST:event_PurchOrdMenItmActionPerformed
 
     public static void main(String args[]) {
