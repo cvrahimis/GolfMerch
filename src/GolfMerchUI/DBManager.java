@@ -45,6 +45,34 @@ public class DBManager {
 	    return con;
     }
     
+    public String[] getDistCategories() throws SQLException{
+        ArrayList<String> results = new ArrayList<>();
+        String[] categories;
+        Statement stmt = null;
+	String query = "select distinct category from products";	    
+	ResultSet rs = null;
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                results.add(rs.getString("category"));
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        
+        categories = new String[results.size()];
+            for(int i = 0; i < results.size(); i++)
+                categories[i] = results.get(i);
+        
+        return categories;
+    }
+    
     public void InsertNewUser(String fname, String lname, String uname, String pass, boolean admin) throws SQLException {	
         String SQL = "INSERT INTO Users (firstname, lastname, username, passwd, isAdmin) VALUES(?, ?, ?, ?, ?)";
 
@@ -239,6 +267,34 @@ public class DBManager {
         } 
         finally {
             if (stmt != null) { stmt.close(); }
+        }
+        return results;
+    }
+    
+    public ArrayList<Object[]> getInventoryByCategory(String category) throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        PreparedStatement pstmt = null;
+        String query = "";
+        ResultSet rs = null;
+        
+        try {
+            query = "SELECT category, COUNT(itemID) Item_Count\n" +
+                    "FROM Products\n" +
+                    "WHERE category = ?\n" +
+                    "GROUP BY category;";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, category);
+            rs = pstmt.executeQuery();       
+	    
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("category"), rs.getString("item_count")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } 
+        finally {
+            if (pstmt != null) { pstmt.close(); }
         }
         return results;
     }
