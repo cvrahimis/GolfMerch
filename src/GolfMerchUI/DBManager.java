@@ -75,7 +75,7 @@ public class DBManager {
         return categories;
     }
     
-        public String[] getAllProducts() throws SQLException{
+    public String[] getAllProducts() throws SQLException{
         ArrayList<String> results = new ArrayList<>();
         String[] products;
         Statement stmt = null;
@@ -103,7 +103,7 @@ public class DBManager {
         return products;
     }
     
-        public String[] getAllOrders() throws SQLException{
+    public String[] getAllOrders() throws SQLException{
         ArrayList<String> results = new ArrayList<>();
         String[] orders;
         Statement stmt = null;
@@ -129,8 +129,31 @@ public class DBManager {
                 orders[i] = results.get(i);
         
         return orders;
-    }        
+    }   
         
+    public ArrayList<Object[]> getDistCustomers() throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        String[] categories;
+        Statement stmt = null;
+	String query = "select distinct customerid, customerName from customer";	    
+	ResultSet rs = null;
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("customerid"), rs.getString("customerName")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }        
+        return results;
+    }
+    
     public void InsertNewUser(String fname, String lname, String uname, String pass, boolean admin) throws SQLException {	
         String SQL = "INSERT INTO Users (firstname, lastname, username, passwd, isAdmin) VALUES(?, ?, ?, ?, ?)";
 
@@ -153,6 +176,39 @@ public class DBManager {
         
         //Explicitly commit statements to apply changes
         conn.commit();
+    }
+    
+    public boolean InsertNewItem(String itmeId, String itemName, String description, int quantity, String category, double retailPrice, double wholesalePrice) {
+        boolean success = true;
+        try{
+            String SQL = "INSERT INTO products (itemid, itemname, description, quantity, category, retailprice, wholesaleprice) VALUES(?, ?, ?, ?, ?, ?, ?)";
+
+            // Create PrepareStatement object
+            PreparedStatement pstmt = conn.prepareStatement(SQL);
+
+            //Set auto-commit to false
+            conn.setAutoCommit(false);
+
+            // Set the variables	
+            pstmt.setString(1, itmeId);
+            pstmt.setString(2, itemName);
+            pstmt.setString(3, description);
+            pstmt.setInt(4, quantity);
+            pstmt.setString(5, category);
+            pstmt.setDouble(6, retailPrice);
+            pstmt.setDouble(7, wholesalePrice);
+            // Add it to the batch
+            pstmt.addBatch();
+            //Execute
+            pstmt.executeBatch();
+
+            //Explicitly commit statements to apply changes
+            conn.commit();
+        }
+        catch(SQLException ex){
+            success = false;
+        }
+        return success;
     }
     
     public boolean isUsernameTaken(String uname) throws SQLException{

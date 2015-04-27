@@ -262,6 +262,11 @@ public class RegularUser extends javax.swing.JFrame {
 
         PurchOrdMenItm.setText("Item");
         PurchOrdMenItm.setToolTipText("");
+        PurchOrdMenItm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PurchOrdMenItmActionPerformed(evt);
+            }
+        });
         jMenu3.add(PurchOrdMenItm);
 
         customeMenItm.setText("Customer");
@@ -681,6 +686,10 @@ public class RegularUser extends javax.swing.JFrame {
         CustomerInsert cusInsGUI = new CustomerInsert();
         cusInsGUI.setVisible(true);
     }//GEN-LAST:event_customeMenItmActionPerformed
+    private void PurchOrdMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PurchOrdMenItmActionPerformed
+        ItemInsert itemInsert = new ItemInsert();
+        itemInsert.setVisible(true);
+    }//GEN-LAST:event_PurchOrdMenItmActionPerformed
 
     private void itemMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenItmActionPerformed
         InsertPurchaseOrderGUI poGUI = new InsertPurchaseOrderGUI();
