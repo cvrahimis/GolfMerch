@@ -282,9 +282,19 @@ public class RegularUser extends javax.swing.JFrame {
         jMenu3.add(orderMenItm);
 
         itemMenItm.setText("Purchase Order");
+        itemMenItm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenItmActionPerformed(evt);
+            }
+        });
         jMenu3.add(itemMenItm);
 
         invoiceMenItm.setText("Invoice");
+        invoiceMenItm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                invoiceMenItmActionPerformed(evt);
+            }
+        });
         jMenu3.add(invoiceMenItm);
 
         jMenuBar1.add(jMenu3);
@@ -681,6 +691,16 @@ public class RegularUser extends javax.swing.JFrame {
         ItemInsert itemInsert = new ItemInsert();
         itemInsert.setVisible(true);
     }//GEN-LAST:event_PurchOrdMenItmActionPerformed
+
+    private void itemMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenItmActionPerformed
+        InsertPurchaseOrderGUI poGUI = new InsertPurchaseOrderGUI();
+        poGUI.setVisible(true);
+    }//GEN-LAST:event_itemMenItmActionPerformed
+
+    private void invoiceMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invoiceMenItmActionPerformed
+        InsertInvoice invInsGUI = new InsertInvoice();
+        invInsGUI.setVisible(true);
+    }//GEN-LAST:event_invoiceMenItmActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

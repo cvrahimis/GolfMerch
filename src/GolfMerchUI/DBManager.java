@@ -75,6 +75,62 @@ public class DBManager {
         return categories;
     }
     
+    public String[] getAllProducts() throws SQLException{
+        ArrayList<String> results = new ArrayList<>();
+        String[] products;
+        Statement stmt = null;
+	String query = "select itemid from products";	    
+	ResultSet rs = null;
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                results.add(rs.getString("itemid"));
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        
+        products = new String[results.size()];
+            for(int i = 0; i < results.size(); i++)
+                products[i] = results.get(i);
+        
+        return products;
+    }
+    
+    public String[] getAllOrders() throws SQLException{
+        ArrayList<String> results = new ArrayList<>();
+        String[] orders;
+        Statement stmt = null;
+	String query = "select orderID from CustOrderInfo";	    
+	ResultSet rs = null;
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                results.add(rs.getString("orderID"));
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        
+        orders = new String[results.size()];
+            for(int i = 0; i < results.size(); i++)
+                orders[i] = results.get(i);
+        
+        return orders;
+    }   
+        
     public ArrayList<Object[]> getDistCustomers() throws SQLException{
         ArrayList<Object[]> results = new ArrayList<>();
         String[] categories;
@@ -529,6 +585,31 @@ public class DBManager {
         return results;
     }
     
+    public double getTotalAmountForOrder(String orderID) throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        PreparedStatement pstmt = null;
+        String query = "";
+        ResultSet rs = null;
+        
+        try {
+            query = "select totalPrice From CustOrderInfo where orderID = ?;";
+            pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, orderID);
+            
+	    rs = pstmt.executeQuery();
+            while (rs.next()) {
+                results.add(new Object[]{rs.getDouble("totalPrice")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null) { pstmt.close(); }
+        }
+        Object[] totalPrice = results.get(0);
+        return (Double)totalPrice[0];  
+    }  
+    
     public boolean insertNewCustomer(String customerID, String customerName, String phoneNumber, String emailAddress, double creditLimit)
     {
         PreparedStatement pstmt;        
@@ -562,6 +643,53 @@ public class DBManager {
             return success;
         }
     }
+    
+       public boolean insertNewPurchaseOrder(String itemID, int quantity)
+    {
+        PreparedStatement pstmt;        
+        boolean success = true;
+        try {
+            String sql = "INSERT INTO PurchaseOrder (itemid,quantity,createddate,isfulfilled) VALUES (?,?,?,?)";
+            DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+            Date today = new Date();          
+            pstmt = conn.prepareStatement(sql);        
+            pstmt.setString(1,itemID);
+            pstmt.setInt(2,quantity);
+            pstmt.setTimestamp(3,new java.sql.Timestamp(System.currentTimeMillis()));
+            pstmt.setInt(4,0);            
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+            success = false;
+        }
+        finally
+        {
+            return success;
+        }
+    }
+       
+       public boolean insertNewInvoice(String orderID, double amountPaid)
+    {
+        PreparedStatement pstmt;        
+        boolean success = true;
+        try {
+            String sql = "INSERT INTO Invoices (orderid,amountpaid,createddate) VALUES (?,?,?)";
+            DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+            Date today = new Date();          
+            pstmt = conn.prepareStatement(sql);        
+            pstmt.setString(1,orderID);
+            pstmt.setDouble(2,amountPaid);
+            pstmt.setTimestamp(3,new java.sql.Timestamp(System.currentTimeMillis()));                      
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+            success = false;
+        }
+        finally
+        {
+            return success;
+        }
+    }       
    
     public Object[] login(String username, String password) throws SQLException {
     
