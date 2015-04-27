@@ -72,7 +72,7 @@ public class OrderInsert extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Customer Name:");
 
-        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}

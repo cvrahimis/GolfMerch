@@ -51,7 +51,9 @@ public class DBManager {
         ArrayList<String> results = new ArrayList<>();
         String[] categories;
         Statement stmt = null;
-	String query = "select distinct category from products";	    
+	String query = "select 'ALL' as category, 1 union\n" +
+                       "select distinct category, 2 from products\n" +
+                       "order by 2 asc";	    
 	ResultSet rs = null;
         
         try {
@@ -129,6 +131,32 @@ public class DBManager {
                 orders[i] = results.get(i);
         
         return orders;
+    } 
+    
+    public ArrayList<Object[]> getOrders() throws SQLException{
+        ArrayList<Object[]> results = new ArrayList<>();
+        String[] orders;
+        Statement stmt = null;
+	String query = "select orderid, customerid, createdDate, totalprice from CustOrderInfo";	    
+	ResultSet rs = null;
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+           
+            while (rs.next()) {
+                results.add(new Object[]{rs.getString("orderid"), rs.getString("customerid"), rs.getString("createdDate"), rs.getString("totalprice")});
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        
+        
+        
+        return results;
     } 
     
     public double getPrice(String itemID) throws SQLException{        
@@ -447,12 +475,22 @@ public class DBManager {
         ResultSet rs = null;
         
         try {
-            query = "SELECT category, COUNT(itemID) Item_Count\n" +
+            if(category.equals("ALL"))
+            {
+                query = "SELECT category, COUNT(itemID) Item_Count\n" +
+                    "FROM Products\n" +
+                    "GROUP BY category;";
+                pstmt = conn.prepareStatement(query);
+            }
+            else
+            {
+                query = "SELECT category, COUNT(itemID) Item_Count\n" +
                     "FROM Products\n" +
                     "WHERE category = ?\n" +
                     "GROUP BY category;";
-            pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, category);
+                pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, category);
+            }
             rs = pstmt.executeQuery();       
 	    
             while (rs.next()) {
