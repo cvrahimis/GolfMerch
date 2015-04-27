@@ -123,7 +123,7 @@ public class Login extends javax.swing.JFrame {
             {
                 jLabel2.setText("Invalid login");
             }
-            if(results.length > 0)
+            else if(results.length > 0)
             {
                 setVisible(false);
                 dispose(); 
@@ -137,6 +137,8 @@ public class Login extends javax.swing.JFrame {
                 }
                 
             }
+            else
+                jLabel2.setText("Invalid login");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

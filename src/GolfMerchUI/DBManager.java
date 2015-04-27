@@ -129,7 +129,62 @@ public class DBManager {
                 orders[i] = results.get(i);
         
         return orders;
-    }   
+    } 
+    
+    public double getPrice(String itemID) throws SQLException{        
+        Statement stmt = null;
+        ArrayList<String> results = new ArrayList<>();
+	String query = "select retailprice from products where itemID = '" + itemID + "';";	    
+	ResultSet rs = null;
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+            
+            while (rs.next()) {
+                results.add(rs.getString("retailprice"));
+            }
+        } 
+        catch (SQLException e ) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null) { stmt.close(); }
+        }
+        if(results.size() > 0)
+            return Double.parseDouble((String)results.get(0));
+        else
+            return -1;
+    }
+    
+    public boolean orderIdExists(String orderID) throws SQLException{
+        if(!orderID.equals(""))
+        {
+            ArrayList<String> results = new ArrayList<>();
+            Statement stmt = null;
+            String query = "select count(orderID) as total from CustOrderInfo where orderID = '" + orderID + "';";	    
+            ResultSet rs = null;
+
+            try {
+                stmt = conn.createStatement();
+                rs = stmt.executeQuery(query);
+
+                while (rs.next()) {
+                    results.add(rs.getString("total"));
+                }
+            } 
+            catch (SQLException e ) {
+                e.printStackTrace();
+            } finally {
+                if (stmt != null) { stmt.close(); }
+            }
+
+            if(Integer.parseInt(results.get(0)) > 0)    
+                return true;
+        }
+        else
+            return true;
+        return false;
+    }
         
     public ArrayList<Object[]> getDistCustomers() throws SQLException{
         ArrayList<Object[]> results = new ArrayList<>();
@@ -634,6 +689,49 @@ public class DBManager {
                 pstmt.setDouble(3,0.00);
                 pstmt.executeUpdate();                               
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
+            success = false;
+        }
+        finally
+        {
+            return success;
+        }
+    }
+    
+    public boolean insertNewOrder(String orderID, String customerID, String shipAddr, String tracknum, double totalprice, ArrayList<Object[]> itemLine)
+    {
+        PreparedStatement pstmt;        
+        boolean success = true;
+        try {
+            String sql = "INSERT INTO custorderinfo (orderid, customerid, shippingAddress, trackingnumber, status, createddate, totalprice, orderbalance) VALUES (?,?,?,?,?,?,?,?)";
+            DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+            Date today = new Date();          
+            pstmt = conn.prepareStatement(sql);        
+            pstmt.setString(1,orderID);
+            pstmt.setString(2,customerID);
+            pstmt.setString(3, shipAddr);
+            pstmt.setString(4, tracknum);
+            if(tracknum.equals(""))
+                pstmt.setInt(5, 2);
+            else
+                pstmt.setInt(5, 1);
+            pstmt.setTimestamp(6, new java.sql.Timestamp(System.currentTimeMillis()));
+            pstmt.setDouble(7,totalprice);
+            pstmt.setDouble(8,totalprice);
+            pstmt.executeUpdate();
+            
+            for(int i = 0; i < itemLine.size(); i++)
+            {
+                sql = "INSERT INTO orderitemsinfo (orderid, itemid, quantity) VALUES (?,?,?)";
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1,orderID);
+                Object[] item = itemLine.get(i);
+                pstmt.setString(2,(String)item[0]);
+                pstmt.setInt(3,(Integer)item[1]);
+                pstmt.executeUpdate();     
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
             success = false;

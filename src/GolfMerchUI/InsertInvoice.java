@@ -48,6 +48,7 @@ public class InsertInvoice extends javax.swing.JFrame {
         amountPaidTextFld = new javax.swing.JTextField();
         orderIDComboBox = new javax.swing.JComboBox();
         insertBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +62,13 @@ public class InsertInvoice extends javax.swing.JFrame {
         insertBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 insertBtnActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Close");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -81,7 +89,9 @@ public class InsertInvoice extends javax.swing.JFrame {
                             .addComponent(amountPaidTextFld, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
-                        .addComponent(insertBtn)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(insertBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,7 +107,9 @@ public class InsertInvoice extends javax.swing.JFrame {
                     .addComponent(amountPaidTextFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(insertBtn)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,6 +141,11 @@ public class InsertInvoice extends javax.swing.JFrame {
             Logger.getLogger(InsertInvoice.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_insertBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,6 +186,7 @@ public class InsertInvoice extends javax.swing.JFrame {
     private javax.swing.JLabel amountPaidLbl;
     private javax.swing.JTextField amountPaidTextFld;
     private javax.swing.JButton insertBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox orderIDComboBox;
     private javax.swing.JLabel orderIDLbl;
     // End of variables declaration//GEN-END:variables

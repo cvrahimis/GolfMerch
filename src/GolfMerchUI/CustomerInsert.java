@@ -46,6 +46,7 @@ public class CustomerInsert extends javax.swing.JFrame {
         wholesaleAccountCheckBox = new javax.swing.JCheckBox();
         creditLimitLbl = new javax.swing.JLabel();
         creditLimitTxtFld = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +89,13 @@ public class CustomerInsert extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Close");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,17 +112,19 @@ public class CustomerInsert extends javax.swing.JFrame {
                                 .addComponent(emailAddressLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(wholesaleAccountLbl))
                             .addComponent(creditLimitLbl))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(wholesaleAccountCheckBox)
-                            .addComponent(customerIDtxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(customerNameTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(phoneNumberTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailAddressTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(creditLimitTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(insertBtn)))
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(insertBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(wholesaleAccountCheckBox)
+                    .addComponent(customerIDtxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(customerNameTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(phoneNumberTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailAddressTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(creditLimitTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -145,7 +155,9 @@ public class CustomerInsert extends javax.swing.JFrame {
                     .addComponent(creditLimitLbl)
                     .addComponent(creditLimitTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(insertBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(insertBtn)
+                    .addComponent(jButton1))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -184,6 +196,11 @@ public class CustomerInsert extends javax.swing.JFrame {
     private void creditLimitTxtFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditLimitTxtFldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_creditLimitTxtFldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,6 +246,7 @@ public class CustomerInsert extends javax.swing.JFrame {
     private javax.swing.JLabel emailAddressLbl;
     private javax.swing.JTextField emailAddressTxtFld;
     private javax.swing.JButton insertBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JLabel phoneNumberLbl;
     private javax.swing.JTextField phoneNumberTxtFld;

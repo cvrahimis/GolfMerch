@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -56,14 +57,22 @@ public class OrderInsert extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         addColumnBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        orderIDTxtFld = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        closeBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        shipAddrTxtFld = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        trackNumTxtFld = new javax.swing.JTextField();
+        insertBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Customer Name:");
 
+        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null}
@@ -80,6 +89,7 @@ public class OrderInsert extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTable1);
 
         addColumnBtn.setText("Add Column");
@@ -96,7 +106,28 @@ public class OrderInsert extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Order ID");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Order ID:");
+
+        closeBtn.setText("Close");
+        closeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("Shipping Address:");
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Tracking Number:");
+
+        insertBtn.setText("Insert");
+        insertBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -114,14 +145,20 @@ public class OrderInsert extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jSeparator1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(98, 98, 98)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insertBtn))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(custNameComBox, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(custNameComBox, 0, 157, Short.MAX_VALUE)
+                            .addComponent(orderIDTxtFld, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                            .addComponent(closeBtn)
+                            .addComponent(shipAddrTxtFld)
+                            .addComponent(trackNumTxtFld))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -141,9 +178,21 @@ public class OrderInsert extends javax.swing.JFrame {
                     .addComponent(custNameComBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(orderIDTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(shipAddrTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(trackNumTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(closeBtn)
+                    .addComponent(insertBtn))
+                .addContainerGap())
         );
 
         pack();
@@ -161,6 +210,68 @@ public class OrderInsert extends javax.swing.JFrame {
             model.setRowCount(--rowCount);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void closeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBtnActionPerformed
+        setVisible(false);
+        dispose();
+    }//GEN-LAST:event_closeBtnActionPerformed
+
+    private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
+        if(!orderIDTxtFld.getText().equals("") && !shipAddrTxtFld.getText().equals(""))
+        {
+            double sum = 0.0;
+            double price = 0.0;
+            int qty = 0;
+            String itemID = "";
+            ArrayList<Object[]> itemLine = new ArrayList<>();
+            boolean isAnOrder = true;
+            try{
+                if(!db.orderIdExists(orderIDTxtFld.getText()))
+                {
+                    model = (DefaultTableModel)jTable1.getModel();
+                    jTable1.getCellEditor().stopCellEditing();
+                    for(int r = 0; r < model.getRowCount(); r++)
+                    {
+                        for(int c = 0; c < model.getColumnCount(); c++)
+                        {
+                            if(c == 0)
+                            {
+                                itemID = (String)model.getValueAt(r, c);
+                                price = db.getPrice(itemID);
+                            }
+                            else
+                            {
+                                if(price > 0)
+                                {
+                                    qty = Integer.parseInt(model.getValueAt(r, c).toString());
+                                    sum = sum + (price * qty);
+                                    if(!itemID.equals("") && qty > 0)
+                                        itemLine.add(new Object[]{itemID, qty});
+                                }
+                                else
+                                    isAnOrder = false;
+                            }
+                        }
+                    }
+                    //if(isAnOrder)
+                    //{    
+                        if(isAnOrder && db.insertNewOrder(orderIDTxtFld.getText(), custIDs[custNameComBox.getSelectedIndex()], shipAddrTxtFld.getText(), trackNumTxtFld.getText(), sum, itemLine))
+                        {
+                            setVisible(false);
+                            dispose();                        
+                        }
+                        else
+                           JOptionPane.showMessageDialog(this, "Failed to insert order"); 
+                    //}
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Order ID already exists");
+            }
+            catch(SQLException ex){
+                
+            }
+        }
+    }//GEN-LAST:event_insertBtnActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -196,13 +307,19 @@ public class OrderInsert extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addColumnBtn;
+    private javax.swing.JButton closeBtn;
     private javax.swing.JComboBox custNameComBox;
+    private javax.swing.JButton insertBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField orderIDTxtFld;
+    private javax.swing.JTextField shipAddrTxtFld;
+    private javax.swing.JTextField trackNumTxtFld;
     // End of variables declaration//GEN-END:variables
 }
