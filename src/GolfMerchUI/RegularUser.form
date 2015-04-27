@@ -56,11 +56,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Purchase Order"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemMenItmActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="invoiceMenItm">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Invoice"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="invoiceMenItmActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

@@ -81,6 +81,13 @@ public class CustomerInsert extends javax.swing.JFrame {
 
         creditLimitLbl.setText("Credit Limit");
 
+        creditLimitTxtFld.setText("1000.00");
+        creditLimitTxtFld.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                creditLimitTxtFldActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,6 +180,10 @@ public class CustomerInsert extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Error inserting values into database");
         }
     }//GEN-LAST:event_insertBtnActionPerformed
+
+    private void creditLimitTxtFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditLimitTxtFldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_creditLimitTxtFldActionPerformed
 
     /**
      * @param args the command line arguments
