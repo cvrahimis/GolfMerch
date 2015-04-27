@@ -279,6 +279,11 @@ public class RegularUser extends javax.swing.JFrame {
         jMenu3.add(customeMenItm);
 
         orderMenItm.setText("Order");
+        orderMenItm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderMenItmActionPerformed(evt);
+            }
+        });
         jMenu3.add(orderMenItm);
 
         itemMenItm.setText("Purchase Order");
@@ -683,7 +688,6 @@ public class RegularUser extends javax.swing.JFrame {
     }//GEN-LAST:event_custNotBuyBtnActionPerformed
 
     private void customeMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customeMenItmActionPerformed
-        // TODO add your handling code here:
         CustomerInsert cusInsGUI = new CustomerInsert();
         cusInsGUI.setVisible(true);
     }//GEN-LAST:event_customeMenItmActionPerformed
@@ -692,6 +696,10 @@ public class RegularUser extends javax.swing.JFrame {
         itemInsert.setVisible(true);
     }//GEN-LAST:event_PurchOrdMenItmActionPerformed
 
+    private void orderMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderMenItmActionPerformed
+        OrderInsert orderInsert = new OrderInsert();
+        orderInsert.setVisible(true);
+    }//GEN-LAST:event_orderMenItmActionPerformed
     private void itemMenItmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenItmActionPerformed
         InsertPurchaseOrderGUI poGUI = new InsertPurchaseOrderGUI();
         poGUI.setVisible(true);
